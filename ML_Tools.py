@@ -32,6 +32,28 @@ For single variable systems
 '''
 
 def SingleVar_GradiantDescent(x_train, y_train, m, b, learningRate = 1.0e-2):
+    '''
+    Parameters
+    ----------
+    x_train : Array of floats
+        Contains input for training data.
+    y_train : Array of floats
+        Contains output for training data.
+    m : Float
+        Slope of line, will be updated through function.
+    b : TYPE
+        Slope offset, will be updated through function.
+    learningRate : Float, optional
+        Step size the learning algorithm. The default is 1.0e-2.
+
+    Returns
+    -------
+    m : Float
+        Updated slope of line.
+    b : Float
+        updated slope offset.
+
+    '''
     size = x_train.shape[0]
     dj_dm = 0   #partiel derivative of w
     dj_db = 0   #partial derivative of b
@@ -52,7 +74,25 @@ def SingleVar_GradiantDescent(x_train, y_train, m, b, learningRate = 1.0e-2):
 
     return m, b
 
-def train_singleVarRegression(x_train, y_train, m = 0.01, b = 0.01, count = 0):
+def train_singleVarRegression(x_train, y_train, m = 0.01, b = 0.01, count = 0):    
+    '''
+    Parameters
+    ----------
+    x_train : Array of floats
+        Contains input for training data.
+    y_train : Array of floats
+        Contains output for training data.
+    m : Float, optional
+        Slope of line. The default is 0.01.
+    b : Float, optional
+        Slope offset. The default is 0.01.
+    count : Int, optional
+        Will keep track of number of times function has executed. The default is 0.
+
+    Returns
+    -------
+    None.
+    '''
     
     count += 1
     print("Iteration ", count)
@@ -99,6 +139,28 @@ For multivariable systems
 '''
 
 def multiVar_GradiantDescent(x_train, y_train, m_array, b, learningRate = 1.0e-2):
+    '''
+    Parameters
+    ----------
+    x_train : Array of floats
+        Contains input for training data.
+    y_train : Array of floats
+        Contains output for training data.
+    m_array : Array of floats
+        Will be updated to model training data.
+    b : Float
+        Function offset. Will be updated
+    learningRate : TYPE, optional
+        DESCRIPTION. The default is 1.0e-2.
+
+    Returns
+    -------
+    m_array : Array of float
+        Updated through algorithm.
+    b : Float
+        Updated through algorithm.
+    '''
+    
     dj_dm = np.zeros((x_train.shape[1],))
     dj_db = 0
     
@@ -119,6 +181,24 @@ def multiVar_GradiantDescent(x_train, y_train, m_array, b, learningRate = 1.0e-2
     return m_array, b
 
 def train_multiVarRegression(x_train, y_train, m_array, b = 0.01, count = 0):
+    '''
+    Parameters
+    ----------
+    x_train : Array of floats
+        Contains input for training data.
+    y_train : Array of floats
+        Contains output for training data.
+    m_array : Array of floats
+        Will be updated to model training data.
+    b : Float, optional
+        Function offset. The default is 0.01.
+    count : Int, optional
+        Will keep track of number of times function has executed. The default is 0.
+
+    Returns
+    -------
+    None.
+    '''
     
     count += 1
     print("Iteration ", count)
@@ -149,3 +229,5 @@ def train_multiVarRegression(x_train, y_train, m_array, b = 0.01, count = 0):
         b = multiVar_GradiantDescent(x_train, y_train, m_array, b)
         print(m_array, b)
         train_multiVarRegression(x_train, y_train, m_array, b, count)
+        
+
